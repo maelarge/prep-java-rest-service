@@ -1,10 +1,11 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: customer-profile
+  name: customer-profile-justin
+  namespace: justin
   labels:
     apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: customer-profile
+    app.kubernetes.io/part-of: customer-profile-justin
     apps.tanzu.vmware.com/has-tests: "true"
     apis.apps.tanzu.vmware.com/register-api: "true"
     apps.tanzu.vmware.com/auto-configure-actuators: "true"
@@ -25,12 +26,12 @@ spec:
         type: openapi
         location: 
           path: "/api-docs"
-        owner: customer-relations-department
-        system: profile-management
+        owner: customer-relations-department-justin
+        system: profile-management-justin
         description: Manage customer profiles
   source:
     git:
-      url: https://github.com/Mpluya/prep-java-rest-service
+      url: ssh://git@github.com/maelarge/prep-java-rest-service
       ref:
         branch: main
   serviceClaims:
@@ -38,4 +39,4 @@ spec:
       ref:
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
         kind: ResourceClaim
-        name: customer-database-claim
+        name: postgres-mae
